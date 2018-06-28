@@ -1,0 +1,5 @@
+erpvenv
+*.pyc
+staticfiles
+.env
+db.sqlite3

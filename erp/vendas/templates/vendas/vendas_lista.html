@@ -1,0 +1,106 @@
+{% extends "erp_base.html" %}
+{% load staticfiles %}
+{% block box-title %} Vendas {% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+      <li><a href="{% url 'index' %}"><i class="fa fa-home"></i>Início</a></li>
+      <li><a href="{% url 'vendas:vendas_home' %}">Vendas</a></li>
+      <li class="active"> Últimas Vendas </li>
+    </ol>
+{% endblock %}
+
+<div class="box-body" xmlns="http://www.w3.org/1999/html" >
+
+{% block conteudo %}
+
+    <div class="selector-filter">
+        <form method="get" action="">
+            <div class="col-sm-6">
+            <input type="text" name="p" class="form-control"  placeholder="Cliente" value="{{ request.GET.p }}">
+            <input type="text" name ="i" class="form-control"  placeholder="Item" value="{{ request.GET.i }}">
+            <!--<input type="text" name="u" class="form-control"  placeholder="Vendedor" value="{{ request.GET.u }}"> -->
+            </div>
+            <div class="col-sm-6">
+            <input type="text" name="d" class="form-control"  placeholder="Período" value="{{ request.GET.d }}">
+            </div>
+            <div class="col-sm-12 with-border" >
+            <!-- <button type="submit" class="btn btn-primary">Pesquisar</button> -->
+                <input type="submit" class="btn btn-primary" value="Pesquisar">
+            </div>
+        </form>
+    </div>
+
+    {% block content %}
+
+
+        <div class="row" >
+            <div class="col-sm-offset-10 col-sm-2">
+                <a  class="btn btn-primary" href="{% url 'vendas:vendas_nova' %}"><span class="glyphicon glyphicon-plus"></span> Nova</a>
+            </div>
+        </div>
+
+
+
+        <table id="gridItemMov" class="table table-bordered table-striped">
+        <thead> <!--
+        <tr>
+            <th colspan="5" ></th>
+            <th colspan="2" ><a class="btn btn-primary" href="{% url 'vendas:vendas_nova' %}">  <span class="glyphicon glyphicon-plus"></span> Nova </a></th>
+        </tr> -->
+        <tr>
+            <th>Item</th>
+            <th>Cliente</th>
+            <th>Local</th>
+            <th>Data</th>
+            <th>Qtde</th>
+            <th colspan="2">Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for mov in itemmov_grid %}
+            <tr>
+                <td>  <a href="{% url 'vendas:vendas_detalhe' mov.id %}"> {{ mov.item }} </a> </td>
+                <td>   {{ mov.pessoa }} </td>
+                <td>   {{ mov.local }} </td>
+                <td>     {{ mov.movimentodt}}  </td>
+                <td>     {{ mov.qtdemovimento }}  </td>
+                <td> <a href="{% url 'vendas:vendas_nova' %}">  <span class="glyphicon glyphicon-pencil"></span></a> </td>
+                <td> <a href="{% url 'vendas:vendas_nova' %}">  <span class="glyphicon glyphicon-trash"></span></a> </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+         <tr>
+
+            <th>Item</th>
+             <th>Cliente</th>
+            <th>Local</th>
+            <th>Data</th>
+            <th>Qtde</th>
+            <th colspan="2">Ações</th>
+        </tr>
+        </tfoot>
+        </table>
+
+        <div class="pagination col-sm-12">
+            <span class="step-links">
+            <ul class="pager">
+                {% if itemmov_grid.has_previous %}
+                    <li><a href="?pagina={{ itemmov_grid.previous_page_number }}&p={{ request.GET.p }}&i={{ request.GET.i }}&u={{ request.GET.u }}&d={{ request.GET.d }}">Anterior</a></li>
+                {% endif %}
+
+                    <li>Página {{ itemmov_grid.number }} de {{ num_paginas }}</li>
+
+                {% if itemmov_grid.has_next %}
+                    <li><a href="?pagina={{ itemmov_grid.next_page_number }}&p={{ request.GET.p }}&i={{ request.GET.i }}&u={{ request.GET.u }}&d={{ request.GET.d }}">Próximo</a></li>
+                {% endif %}
+            </ul>
+            </span>
+
+
+        </div>
+    {% endblock %}
+{% endblock %}
+</div>
+

@@ -1,0 +1,21 @@
+{% extends "erp_base.html" %}
+{% load staticfiles %}
+
+{%  block box-title %} Login {% endblock %}
+
+{% block conteudo %}
+
+<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include 'form-template.html' %}
+
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <button type="submit" class="btn btn-success">Entrar</button>
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock %}

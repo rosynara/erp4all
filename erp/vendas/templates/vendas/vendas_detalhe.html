@@ -1,0 +1,31 @@
+
+{% extends "erp_base.html" %}
+{% load staticfiles %}
+
+
+<div class="box-body">
+{% block conteudo %}
+
+    {% block content %}
+            <div class="row">
+                <div class="col-xs-3"> <h5>Código </h5></div>
+                <div class="col-xs-9"> {{ itemmov_det.id }} </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3"> <h5>Item</h5> </div>
+                <div class="col-xs-9">    {{ itemmov_det.item }} </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3"> <h5>Data</h5> </div>
+                <div class="col-xs-9">     {{ itemmov_det.movimentodt }}  </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3"> <h5>Qtde</h5> </div>
+                <div class="col-xs-9">     {{ itemmov_det.qtdemovimento }}  </div>
+            </div>
+
+
+    {% endblock %}
+{% endblock %}
+</div>
+

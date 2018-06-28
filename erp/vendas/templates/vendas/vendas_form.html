@@ -1,0 +1,24 @@
+{% extends "erp_base.html" %}
+{% load staticfiles %}
+{% block box-title %} Nova Venda {% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+      <li><a href="{% url 'index' %}"><i class="fa fa-home"></i>Início</a></li>
+      <li><a href="{% url 'vendas:vendas_home' %}">Vendas</a></li>
+      <li><a href="{% url 'vendas:vendas_lista' %}">Últimas Vendas</a></li>
+      <li class="active"> {{ titulo }} </li>
+    </ol>
+{% endblock %}
+
+{% block conteudo %}
+<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include 'form-template.html' %}
+
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

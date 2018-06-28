@@ -1,0 +1,14 @@
+{% extends "erp_base.html" %}
+{% load staticfiles %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+      <li><a href="{% url 'index' %}"><i class="fa fa-home"></i>Início</a></li>
+      <li class="active"> {{ titulo }} </li>
+    </ol>
+{% endblock %}
+
+{% block conteudo %}
+
+<a href="vendas/vendas_lista.html"  >Últimas Vendas</a>
+{% endblock %}
